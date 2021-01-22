@@ -20,7 +20,7 @@ using System.Windows.Threading;
 
 namespace GPS
 {
-    //test igor2
+    //test igor22
 
 
     /// <summary>
