@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace GPS
 {
-    class Cross
+    public class Cross
     { 
         public int index;
         public int x;
         public int y;
         public List<int> neighbours = new List<int>();
         public List<double> distance = new List<double>();
+        public List<double> velocity = new List<double>();
     }
 }

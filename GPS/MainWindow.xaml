@@ -8,9 +8,9 @@
         WindowState = "Maximized"
         ResizeMode="NoResize"             
         Title="MainWindow" Height="{Binding SystemParameters.PrimaryScreenHeight}" Width="{Binding SystemParameters.PrimaryScreenWidth}" >
-        
-       
-        
+
+
+
     <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
 
@@ -22,49 +22,116 @@
 
         <Grid.RowDefinitions>
 
-            <RowDefinition Height="82*"/>
-            <RowDefinition Height="76*"/>
-            <RowDefinition Height="106*"/>
-            <RowDefinition Height="92*"/>
-            <RowDefinition Height="68*"/>
-            <RowDefinition Height="35*"/>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="40*"/>
 
         </Grid.RowDefinitions>
 
-        <Image x:Name="map" Source="/Resources/crosses.png" Grid.Column="2"              
-               Stretch="Fill" Grid.RowSpan="6"  MouseLeftButtonDown="Map_MouseLeftButtonDown"></Image>
+        <Image x:Name="map" Source="/Resources/crosses.png" Grid.Column="2" MouseRightButtonDown="Map_MouseRightButtonDown"              
+               Stretch="Fill" Grid.RowSpan="7"  MouseLeftButtonDown="Map_MouseLeftButtonDown" Margin="0,0,0,-0.289"></Image>
 
 
-        <Button x:Name="test" Grid.Column="0" Content="wyznacz dijkstrę" Grid.Row="0"  Margin="0,0,3,0" Click="Test_Click" Grid.RowSpan="2"></Button>
-        <Button x:Name="test2" Grid.Column="0" Content="pokaż drogę" Grid.Row="2" Margin="0,0,3,0" Click="Test2_Click" Grid.ColumnSpan="2"></Button>
-        <Button x:Name="test3" Grid.Column="0" Content="wyznacz linię" Grid.Row="3" Margin="0,0,3,0" Click="Test3_Click" Grid.ColumnSpan="2" ></Button>
-        <Button x:Name="test4" Grid.Column="0" Content="ruch pojazdu" Grid.Row="4" Margin="0,0,3,0" Click="Test4_Click" Grid.ColumnSpan="2"></Button>
+        <Button x:Name="test" Grid.Column="0" Content="wyznacz &#x0a; dijkstrę" Grid.Row="0" Margin="0,0,3,0" Click="Test_Click" Grid.RowSpan="2" FontSize="30"></Button>
+        <Button x:Name="test2" Grid.Column="0" Content="pokaż drogę" Grid.Row="2" Margin="0,0,3,0" Click="Test2_Click" Grid.ColumnSpan="2" FontSize="30"></Button>
+        <Button x:Name="test3" Grid.Column="0" Content="wyznacz linię" Grid.Row="3" Margin="0,0,3,0" Click="Test3_Click" Grid.ColumnSpan="2" FontSize="30" />
+        <Button x:Name="test4" Grid.Column="0" Content="ruch pojazdu" Grid.Row="4" Margin="0,0,3,0" Click="Test4_Click" Grid.ColumnSpan="2" FontSize="30"></Button>
+        <Button x:Name="test5" Grid.Column="0" Content="test" Grid.Row="5" Margin="0,0,3,0" Click="Test5_Click" Grid.ColumnSpan="2" FontSize="30"></Button>
 
-        <TextBox x:Name="showVertex" Grid.Row="5" RenderTransformOrigin="0.109,1.04" TextChanged="ShowVertex" Margin="0,0,5,0" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="StartVertex" Grid.Column="1" Grid.Row="0" Margin="0,0,3,0" TextChanged="StartVertex_TextChanged"/>
-        <TextBox x:Name="EndVertex" Grid.Column="1" Grid.Row="1" Margin="0,0,3,0" TextChanged="EndVertex_TextChanged"/>
+        <TextBox x:Name="showVertex" Grid.Row="6" RenderTransformOrigin="0.109,1.04" TextChanged="ShowVertex" Margin="0,0.289,5,-0.289" Grid.ColumnSpan="2" FontSize="40"/>
+        <TextBox x:Name="StartVertex" Grid.Column="1" Grid.Row="0" Margin="0,0,3,0" TextChanged="StartVertex_TextChanged" FontSize="40"/>
+        <TextBox x:Name="EndVertex" Grid.Column="1" Grid.Row="1" Margin="0,0,3,0" TextChanged="EndVertex_TextChanged" FontSize="40"/>
 
-        <Line Grid.Column="2" x:Name="line00" Grid.RowSpan="6"/>
-        <Line Grid.Column="2" x:Name="line01" Grid.RowSpan="6"/>
-        <Line Grid.Column="2" x:Name="line02" Grid.RowSpan="6"/>
-        <Line Grid.Column="2" x:Name="line03" Grid.RowSpan="6"/>
-        <Line Grid.Column="2" x:Name="line04" Grid.RowSpan="6"/>
-        <Line Grid.Column="2" x:Name="line05" Grid.RowSpan="6"/>
-        <Line Grid.Column="2" x:Name="line06" Grid.RowSpan="6"/>
-        <Line Grid.Column="2" x:Name="line07" Grid.RowSpan="6"/>
-        <Line Grid.Column="2" x:Name="line08" Grid.RowSpan="6"/>
-        <Line Grid.Column="2" x:Name="line09" Grid.RowSpan="6"/>
-        <Line Grid.Column="2" x:Name="line10" Grid.RowSpan="6"/>
-        <Line Grid.Column="2" x:Name="line11" Grid.RowSpan="6"/>
-        <Line Grid.Column="2" x:Name="line12" Grid.RowSpan="6"/>
-        <Line Grid.Column="2" x:Name="line13" Grid.RowSpan="6"/>
-        <Line Grid.Column="2" x:Name="line14" Grid.RowSpan="6"/>
-        <Line Grid.Column="2" x:Name="line15" Grid.RowSpan="6"/>
-        <Line Grid.Column="2" x:Name="line16" Grid.RowSpan="6"/>
-        <Line Grid.Column="2" x:Name="line17" Grid.RowSpan="6"/>
-        <Line Grid.Column="2" x:Name="line18" Grid.RowSpan="6"/>
-        <Ellipse Grid.Column="2" x:Name="car" Grid.RowSpan="6" Width="50" Height="50"
+        <Line Grid.Column="2" x:Name="line00" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line01" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line02" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line03" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line04" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line05" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line06" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line07" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line08" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line09" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line10" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line11" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line12" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line13" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line14" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line15" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line16" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line17" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line18" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line19" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line20" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line21" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line22" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line23" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line24" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line25" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line26" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line27" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line28" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+        <Line Grid.Column="2" x:Name="line29" Grid.RowSpan="7" Margin="0,0,0,-0.289" MouseDown="Map_MouseRightButtonDown"/>
+
+        <Ellipse Grid.Column="2" x:Name="car" Width="50" Height="50" Grid.RowSpan="7"
                  HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop00" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop01" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop02" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop03" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop04" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop05" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop06" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop07" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop08" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop09" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop10" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop11" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop12" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop13" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop14" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop15" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop16" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop17" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop18" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop19" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop20" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop21" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop22" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop23" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop24" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop25" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop26" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop27" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop28" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop29" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop30" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop31" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop32" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop33" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop34" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop35" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop36" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop37" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop38" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop39" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop40" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop41" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop42" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop43" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop44" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop45" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop46" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop47" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop48" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Ellipse Grid.Column="2" Grid.RowSpan="7" x:Name="stop49" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
 
     </Grid>
 </Window>
