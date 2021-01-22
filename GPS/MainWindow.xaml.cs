@@ -20,6 +20,9 @@ using System.Windows.Threading;
 
 namespace GPS
 {
+    //test igor2
+
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
