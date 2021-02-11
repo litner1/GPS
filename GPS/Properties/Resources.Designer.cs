@@ -150,6 +150,15 @@ namespace GPS.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to fsdf.
+        /// </summary>
+        public static string help {
+            get {
+                return ResourceManager.GetString("help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap warszawa {

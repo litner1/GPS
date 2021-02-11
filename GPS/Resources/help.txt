@@ -1,0 +1,13 @@
+- skrzyzowania s¹ numerowane od 0 do 106
+- klikniêcie LPM na skrzy¿owaniu pokazuje jego numer
+w lewym dolnym rogu oraz s¹siednie skrzy¿owania
+- wpisanie w lewym dolnym rogu liczby pokazuje 
+skrzy¿owanie oraz jego s¹siadów
+- znak zakaz ruchu symbolizuje ulice jednokierunkowe;
+ze strony znaku nie ma wjazdu na t¹ ulicê
+(dobry przyk³ad to trasa 64-72 i 72-64)
+- w lewym górnym rogu wpisujemy start trasy i koniec
+- klikniêcie PPM na niebieskiej linii powoduje korek,
+co sprawia, ¿e algorytm wyznaczy inn¹ trasê
+- z prawdopodobieñstwem 1/3 zmieniaj¹ siê warunki
+na drogach, wiêc trasa mo¿e siê zmieniæ w czasie

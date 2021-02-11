@@ -25,6 +25,8 @@ namespace GPS
     /// </summary>
     public partial class MainWindow : Window
     {
+        //zmienne
+
         Dijkstra alg = new Dijkstra();//dijkstra
         List<Cross> crosses = new List<Cross>();//lista wszystkich skrzyzowan
         List<int> route = new List<int>();//droga od startu do końca
@@ -74,7 +76,7 @@ namespace GPS
                 return true;
             return false;
         }
-        //kolorowanie 3x3 piksele
+        //kolorowanie pikseli
         public static void coloring(Bitmap bitmap, int x, int y, System.Drawing.Color color)
         {
             int scale = 15;
@@ -97,6 +99,8 @@ namespace GPS
             InitializeComponent();
             WriteableBitmap bitmapTmp = new WriteableBitmap(CreateBitmapSourceFromBitmap(bitmap));
             map.Source = bitmapTmp;
+            
+            
             //dodanie czarnych punktow jako sktzyzowania
 
             int counter = 0;
@@ -244,33 +248,9 @@ namespace GPS
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
 
             //wyłączanie guzików
-            test2.IsEnabled = false;
             test3.IsEnabled = false;
             test4.IsEnabled = false;
-        }
 
-        //zapisuje współrzędne kliknięcia oraz pokazuje numer skrzyżowania z sąsiadami
-        private void Map_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            BitmapSource bitmapTmp = (BitmapSource)map.Source;
-            Bitmap bitmap = new Bitmap(BitmapFromSource(bitmapTmp));
-            var point = Mouse.GetPosition(map);
-            // int x = point.X/MainWindow.ActualWidthProperty
-            double x = column.ActualWidth;
-            double y = grid.ActualHeight;
-            //  if (a.IsEmpty)
-            mouse.X = (int)point.X;
-            mouse.Y = (int)point.Y;
-
-            for (int i = 0; i < crosses.Count; i++)
-            {
-                if (Math.Abs(crosses[i].x - mouse.X * bitmap.Width / map.ActualWidth) < 5
-                    && Math.Abs(crosses[i].y - mouse.Y * bitmap.Height / map.ActualHeight) < 5)
-                {
-                    showVertex.Text = i.ToString();
-                    break;
-                }
-            }
         }
 
         //dijkstra od (a,b)   
@@ -430,23 +410,21 @@ namespace GPS
             Remaining_way.Content = ((int)(distance * ratio) / 50) * 50;
             Remaining_way.Content += " metrów";
 
-
-
-
-
-
             //buttony
-
-
-
-
             test3.IsEnabled = true;
         }
 
       
         private void Test2_Click(object sender, RoutedEventArgs e)
         {
+            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Resources\help.txt";
+            string[] x = File.ReadAllLines(path, Encoding.GetEncoding(1250));
+            string tmp = null;
+            for (int i = 0; i < x.Length; i++)
+                tmp += x[i] + "\n";
 
+
+            MessageBox.Show(tmp);
         }
 
         //rysowanie łamanej od a do b
@@ -585,16 +563,6 @@ namespace GPS
             }
         }
 
-
-
-
-
-
-
-
-
-
-
         //pokazanie wezla i sasiadow
         private void ShowVertex(object sender, TextChangedEventArgs e)
         {
@@ -609,24 +577,17 @@ namespace GPS
                     int X = crosses[int.Parse(showVertex.Text)].x;
                     int Y = crosses[int.Parse(showVertex.Text)].y;
                     bitmap = new Bitmap(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Resources\crosses.png");
-                    coloring(bitmap, X, Y, System.Drawing.Color.GreenYellow);
+                    coloring(bitmap, X, Y, System.Drawing.Color.MidnightBlue);
                     for (int i = 0; i < crosses[int.Parse(showVertex.Text)].neighbours.Count; i++)
                     {
                         coloring(bitmap, crosses[crosses[int.Parse(showVertex.Text)].neighbours[i]].x,
-                            crosses[crosses[int.Parse(showVertex.Text)].neighbours[i]].y, System.Drawing.Color.Blue);
+                            crosses[crosses[int.Parse(showVertex.Text)].neighbours[i]].y, System.Drawing.Color.OrangeRed);
                     }
                 }
                 WriteableBitmap bitmapTmp = new WriteableBitmap(CreateBitmapSourceFromBitmap(bitmap));
                 map.Source = bitmapTmp;
             }
         }
-
-
-
-
-
-
-
 
 
         //punkt startowy
@@ -642,6 +603,31 @@ namespace GPS
             if (EndVertex.Text != "")
                 endVertex = int.Parse(EndVertex.Text);
         }
+
+        //zapisuje współrzędne kliknięcia oraz pokazuje numer skrzyżowania z sąsiadami
+        private void Map_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            BitmapSource bitmapTmp = (BitmapSource)map.Source;
+            Bitmap bitmap = new Bitmap(BitmapFromSource(bitmapTmp));
+            var point = Mouse.GetPosition(map);
+            // int x = point.X/MainWindow.ActualWidthProperty
+            double x = column.ActualWidth;
+            double y = grid.ActualHeight;
+            //  if (a.IsEmpty)
+            mouse.X = (int)point.X;
+            mouse.Y = (int)point.Y;
+
+            for (int i = 0; i < crosses.Count; i++)
+            {
+                if (Math.Abs(crosses[i].x - mouse.X * bitmap.Width / map.ActualWidth) < 5
+                    && Math.Abs(crosses[i].y - mouse.Y * bitmap.Height / map.ActualHeight) < 5)
+                {
+                    showVertex.Text = i.ToString();
+                    break;
+                }
+            }
+        }
+
 
         private void Map_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {

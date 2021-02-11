@@ -39,7 +39,7 @@
 
 
         <Button x:Name="test" Grid.Column="0" Content="wyznacz &#x0a; dijkstrę" Grid.Row="0" Margin="0,0,3,0" Click="Test_Click" Grid.RowSpan="2" FontSize="30"></Button>
-        <Button x:Name="test2" Grid.Column="0" Content="pokaż drogę" Grid.Row="2" Margin="0,0,3,0" Click="Test2_Click" Grid.ColumnSpan="2" FontSize="30"></Button>
+        <Button x:Name="test2" Grid.Column="0" Content="pomoc" Grid.Row="2" Margin="0,0,3,0" Click="Test2_Click" Grid.ColumnSpan="2" FontSize="30"></Button>
         <Button x:Name="test3" Grid.Column="0" Content="wyznacz linię" Grid.Row="3" Margin="0,0,3,0" Click="Test3_Click" Grid.ColumnSpan="2" FontSize="30" />
         <Button x:Name="test4" Grid.Column="0" Content="ruch pojazdu" Grid.Row="4" Margin="0,0,3,0" Click="Test4_Click" Grid.ColumnSpan="2" FontSize="30"></Button>
         <Label x:Name="Road_velocity" Grid.Row="5" Margin="0,0,3,0" Grid.ColumnSpan="2" FontSize="30">
