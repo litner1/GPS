@@ -38,7 +38,7 @@
                Stretch="Fill" Grid.RowSpan="8"  MouseLeftButtonDown="Map_MouseLeftButtonDown"/>
 
 
-        <Button x:Name="test" Grid.Column="0" Content="wyznacz &#x0a; dijkstrę" Grid.Row="0" Margin="0,0,3,0" Click="Test_Click" Grid.RowSpan="2" FontSize="30"></Button>
+        <Button x:Name="test" Grid.Column="0" Content="wyznacz &#x0a; trasę" Grid.Row="0" Margin="0,0,3,0" Click="Test_Click" Grid.RowSpan="2" FontSize="30"></Button>
         <Button x:Name="test2" Grid.Column="0" Content="pomoc" Grid.Row="2" Margin="0,0,3,0" Click="Test2_Click" Grid.ColumnSpan="2" FontSize="30"></Button>
         <Button x:Name="test3" Grid.Column="0" Content="wyznacz linię" Grid.Row="3" Margin="0,0,3,0" Click="Test3_Click" Grid.ColumnSpan="2" FontSize="30" />
         <Button x:Name="test4" Grid.Column="0" Content="ruch pojazdu" Grid.Row="4" Margin="0,0,3,0" Click="Test4_Click" Grid.ColumnSpan="2" FontSize="30"></Button>
@@ -88,56 +88,56 @@
                  HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
 
 
-        <Ellipse Grid.Column="2" x:Name="stop00" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop01" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop02" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop03" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop04" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop05" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop06" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop07" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop08" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop09" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop10" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop11" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop12" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop13" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop14" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop15" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop16" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop17" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop18" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop19" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop20" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop21" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop22" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop23" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop24" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop25" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop26" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop27" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop28" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop29" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop30" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop31" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop32" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop33" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop34" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop35" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop36" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop37" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop38" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop39" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop40" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop41" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop42" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop43" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop44" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop45" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop46" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop47" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop48" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
-        <Ellipse Grid.Column="2" x:Name="stop49" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop00" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop01" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop02" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop03" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop04" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop05" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop06" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop07" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop08" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop09" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop10" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop11" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop12" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop13" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop14" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop15" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop16" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop17" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop18" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop19" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop20" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop21" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop22" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop23" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop24" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop25" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop26" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop27" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop28" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop29" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop30" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop31" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop32" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop33" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop34" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop35" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop36" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop37" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop38" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop39" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop40" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop41" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop42" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop43" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop44" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop45" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop46" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop47" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop48" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
+        <Ellipse Grid.Column="2" x:Name="stop49" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="8"/>
 
 
     </Grid>

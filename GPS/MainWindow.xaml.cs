@@ -41,6 +41,7 @@ namespace GPS
         DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();//wątek samochodu
         List<Ellipse> stops = new List<Ellipse>();//ulice jednokierunkowe
         List<List<int>> traffics = new List<List<int>>();//korki
+       
 
         //konwertery
         public static Bitmap BitmapFromSource(BitmapSource bitmapsource)
@@ -77,9 +78,9 @@ namespace GPS
             return false;
         }
         //kolorowanie pikseli
-        public static void coloring(Bitmap bitmap, int x, int y, System.Drawing.Color color)
+        public static void coloring(Bitmap bitmap, int x, int y, System.Drawing.Color color, int scale = 15)
         {
-            int scale = 15;
+            
             for (int i = -scale; i <= scale; i++)
             {
                 for (int j = -scale; j <= scale; j++)
@@ -97,8 +98,7 @@ namespace GPS
         public MainWindow()
         {
             InitializeComponent();
-            WriteableBitmap bitmapTmp = new WriteableBitmap(CreateBitmapSourceFromBitmap(bitmap));
-            map.Source = bitmapTmp;
+
             
             
             //dodanie czarnych punktow jako sktzyzowania
@@ -119,6 +119,24 @@ namespace GPS
                     }
                 }
             }
+
+
+            for (int i = 0; i < crosses.Count; i++)
+            {
+                int X = crosses[i].x;
+                int Y = crosses[i].y;
+                coloring(bitmap, X, Y, System.Drawing.Color.Black, 5);
+
+            }
+            WriteableBitmap bitmapTmp = new WriteableBitmap(CreateBitmapSourceFromBitmap(bitmap));
+            map.Source = bitmapTmp;
+
+
+
+
+
+
+
 
             //wczytanie z pliku
             string line;
@@ -262,13 +280,10 @@ namespace GPS
             //losowanie prędkości dróg
             var rnd = new Random(0);
             var rnd2 = new Random();
-
             if (rnd2.Next(3)==0 || crosses[0].velocity.Count == 0)
             {
-
                 for (int i = 0; i < crosses.Count; i++)
                     crosses[i].velocity.Clear();
-
                 for (int i = 0; i < crosses.Count; i++)
                 {
                     for (int j = 0; j < crosses[i].neighbours.Count; j++)
@@ -278,15 +293,12 @@ namespace GPS
                             crosses[i].velocity.Add(0);
                         else
                         {
-                            int vel = rnd2.Next(3);
+                            int vel = rnd2.Next(5);
                             crosses[i].velocity.Add(30 + 10 * vel);
                         }
-
                     }
                 }
             }
-
-
 
             //korki
            for(int i = 0; i < traffics.Count; i++)
@@ -335,6 +347,9 @@ namespace GPS
         {
             var graph = setGraph(traffics);//macierz incydencji
 
+
+
+
             parents = alg.dijkstra(graph, startVertex);
             List<int> tmp = new List<int>();
             int index = endVertex;
@@ -346,15 +361,19 @@ namespace GPS
             }
             route = tmp;
 
+
+
+            Bitmap clear_map = (Bitmap)bitmap.Clone();
+
             //pokazanie drogi
-            bitmap = new Bitmap(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Resources\crosses.png");
+            //bitmap = new Bitmap(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Resources\crosses.png");
             for (int i = 0; i < route.Count; i++)
             {
-                coloring(bitmap, crosses[route[i]].x, crosses[route[i]].y, System.Drawing.Color.BlueViolet);
+                coloring(clear_map, crosses[route[i]].x, crosses[route[i]].y, System.Drawing.Color.BlueViolet);
             }
-            coloring(bitmap, crosses[startVertex].x, crosses[startVertex].y, System.Drawing.Color.OrangeRed);
-            coloring(bitmap, crosses[endVertex].x, crosses[endVertex].y, System.Drawing.Color.Orange);
-            WriteableBitmap bitmapTmp = new WriteableBitmap(CreateBitmapSourceFromBitmap(bitmap));
+            coloring(clear_map, crosses[startVertex].x, crosses[startVertex].y, System.Drawing.Color.OrangeRed);
+            coloring(clear_map, crosses[endVertex].x, crosses[endVertex].y, System.Drawing.Color.Orange);
+            WriteableBitmap bitmapTmp = new WriteableBitmap(CreateBitmapSourceFromBitmap(clear_map));
             map.Source = bitmapTmp;
 
             for (int i = 0; i < roads.Count; i++)//ukrycie wcześniej zrobionych dróg
@@ -363,7 +382,7 @@ namespace GPS
 
 
             //ulice jednokierunkowe
-            bitmap = new Bitmap(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Resources\crosses.png");
+            //bitmap = new Bitmap(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Resources\crosses.png");
             int count= 0;
             for (int i = 0; i < crosses.Count; i++)
             {
@@ -371,23 +390,49 @@ namespace GPS
                 {
                     if (crosses[i].velocity[j] == 0)
                     {
-                        int scale = 3;
+                        int scale = 1;
                         double x1 = (scale * crosses[i].x + crosses[crosses[i].neighbours[j]].x) / (scale + 1) * map.ActualWidth / bitmap.Width;
                         double y1 = (scale * crosses[i].y + crosses[crosses[i].neighbours[j]].y) / (scale + 1) * map.ActualHeight / bitmap.Height;
                         x1 -= stops[count].Width / 2;
                         y1 -= stops[count].Height / 2;
 
-                        stops[count].Stroke = System.Windows.Media.Brushes.Red;
-                        stops[count].StrokeThickness = 3;
-                        stops[count].Fill = System.Windows.Media.Brushes.White;
+                        //strzałka jako obraz
+                        ImageBrush left_arrow = new ImageBrush();
+                        var uri_left = new Uri(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Resources\left arrow.jpg");
+                        left_arrow.ImageSource = new BitmapImage(uri_left);
+
+                        //obracanie obrazu
+                        RotateTransform leftTransform = new RotateTransform();
+                        double X = crosses[crosses[i].neighbours[j]].x - crosses[i].x;
+                        double Y = crosses[crosses[i].neighbours[j]].y - crosses[i].y;
+                        angle = Math.Atan(Y / X) / Math.PI * 180;
+                        leftTransform.CenterX = 0.5;
+                        leftTransform.CenterY = 0.5;
+                        leftTransform.Angle = angle;
+                        left_arrow.RelativeTransform = leftTransform;
+                        
+                        if (crosses[i].x < crosses[crosses[i].neighbours[j]].x)
+                        {
+                            stops[count].Fill = left_arrow;
+                            stops[count].StrokeThickness = 5;
+                            stops[count].Stroke = System.Windows.Media.Brushes.Red;
+                        }
+                        else
+                        {
+                            leftTransform.Angle = angle + 180;
+                            left_arrow.RelativeTransform = leftTransform;
+                            stops[count].Fill = left_arrow;
+                            stops[count].StrokeThickness = 5;
+                            stops[count].Stroke = System.Windows.Media.Brushes.Red;
+                        }
+
+                       
                         stops[count].Margin = new Thickness(x1, y1, 0, 0);
 
                         count++;
                     }
                 }
             }
-            bitmapTmp = new WriteableBitmap(CreateBitmapSourceFromBitmap(bitmap));
-            map.Source = bitmapTmp;
 
             counter = 0;//wyzerowanie ruchu pojazdu
             counter2 = 0;
@@ -462,7 +507,6 @@ namespace GPS
         {
             dispatcherTimer.Start();
         }
-
         int counter = 0;
         int counter2 = 0;
         private void dispatcherTimer_Tick(object sender, EventArgs e)
@@ -519,7 +563,6 @@ namespace GPS
                 angle = Math.Abs(angle);
 
 
-
             var newPlace = car.Margin;
             if (crosses[route[counter + 1]].x < crosses[route[counter]].x)
                 newPlace.Left--;
@@ -535,8 +578,8 @@ namespace GPS
                 roads[route.Count - counter - 2].X2--;
             roads[route.Count - counter - 2].Y2 += angle;
 
-            double Y = car.Margin.Top * bitmap.Height / map.ActualHeight;
-            double X = car.Margin.Left * bitmap.Width / map.ActualWidth;
+            //double Y = car.Margin.Top * bitmap.Height / map.ActualHeight;
+            //double X = car.Margin.Left * bitmap.Width / map.ActualWidth;
 
             counter2++;
             if (counter2 == (int)(Math.Abs(crosses[route[counter + 1]].x - crosses[route[counter]].x) * map.ActualWidth / bitmap.Width))
@@ -563,28 +606,37 @@ namespace GPS
             }
         }
 
+
+
+
+        
+
         //pokazanie wezla i sasiadow
         private void ShowVertex(object sender, TextChangedEventArgs e)
         {
+
+            Bitmap clear_map = (Bitmap)bitmap.Clone();
+
+
             if (showVertex.Text != "")
             {
                 if (int.Parse(showVertex.Text) > 106)
                 {
-                    bitmap = new Bitmap(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Resources\crosses.png");
+                    //bitmap = new Bitmap(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Resources\crosses.png");
                 }
                 else
                 {
                     int X = crosses[int.Parse(showVertex.Text)].x;
                     int Y = crosses[int.Parse(showVertex.Text)].y;
-                    bitmap = new Bitmap(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Resources\crosses.png");
-                    coloring(bitmap, X, Y, System.Drawing.Color.MidnightBlue);
+                    //bitmap = new Bitmap(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Resources\crosses.png");
+                    coloring(clear_map, X, Y, System.Drawing.Color.MidnightBlue);
                     for (int i = 0; i < crosses[int.Parse(showVertex.Text)].neighbours.Count; i++)
                     {
-                        coloring(bitmap, crosses[crosses[int.Parse(showVertex.Text)].neighbours[i]].x,
+                        coloring(clear_map, crosses[crosses[int.Parse(showVertex.Text)].neighbours[i]].x,
                             crosses[crosses[int.Parse(showVertex.Text)].neighbours[i]].y, System.Drawing.Color.OrangeRed);
                     }
                 }
-                WriteableBitmap bitmapTmp = new WriteableBitmap(CreateBitmapSourceFromBitmap(bitmap));
+                WriteableBitmap bitmapTmp = new WriteableBitmap(CreateBitmapSourceFromBitmap(clear_map));
                 map.Source = bitmapTmp;
             }
         }

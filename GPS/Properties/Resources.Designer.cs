@@ -150,11 +150,31 @@ namespace GPS.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to fsdf.
+        ///   Looks up a localized string similar to - skrzyzowania są numerowane od 0 do 106
+        ///- kliknięcie LPM na skrzyżowaniu pokazuje jego numer
+        ///w lewym dolnym rogu oraz sąsiednie skrzyżowania
+        ///- wpisanie w lewym dolnym rogu liczby pokazuje 
+        ///skrzyżowanie oraz jego sąsiadów
+        ///- znak zakaz ruchu symbolizuje ulice jednokierunkowe;
+        ///ze strony znaku nie ma wjazdu na tą ulicę
+        ///(dobry przykład to trasa 64-72 i 72-64)
+        ///- w lewym górnym rogu wpisujemy start trasy i koniec
+        ///- kliknięcie PPM na niebieskiej linii powoduje korek,
+        ///co sprawia, że algorytm wyznaczy inną [rest of string was truncated]&quot;;.
         /// </summary>
         public static string help {
             get {
                 return ResourceManager.GetString("help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap left_arrow {
+            get {
+                object obj = ResourceManager.GetObject("left_arrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
