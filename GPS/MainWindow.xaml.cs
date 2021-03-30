@@ -1,21 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Drawing;
-using Point = System.Windows.Point;
-using Brushes = System.Windows.Media.Brushes;
 using System.Windows.Threading;
 
 namespace GPS
@@ -33,7 +26,7 @@ namespace GPS
         Cross tmp = new Cross();//skrzyżowanie pomocnicze
         Bitmap bitmap = new Bitmap(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Resources\crosses.png");//mapa
         int[] parents;//kolejni rodzice od punktu końcowego do startu
-        int startVertex = 100;//start
+        int startVertex = 0;//start
         int endVertex = 0;//koniec
         System.Windows.Point mouse = new System.Windows.Point();//punkt zaznaczony myszką
         List<Line> roads = new List<Line>();//droga za pomoca linii
@@ -98,11 +91,8 @@ namespace GPS
         public MainWindow()
         {
             InitializeComponent();
-
-            
-            
+                   
             //dodanie czarnych punktow jako sktzyzowania
-
             int counter = 0;
             for (int i = 2; i < bitmap.Width - 2; i++)
             {
@@ -120,7 +110,7 @@ namespace GPS
                 }
             }
 
-
+            //powiększanie skrzyżowań
             for (int i = 0; i < crosses.Count; i++)
             {
                 int X = crosses[i].x;
@@ -130,13 +120,6 @@ namespace GPS
             }
             WriteableBitmap bitmapTmp = new WriteableBitmap(CreateBitmapSourceFromBitmap(bitmap));
             map.Source = bitmapTmp;
-
-
-
-
-
-
-
 
             //wczytanie z pliku
             string line;
@@ -164,8 +147,6 @@ namespace GPS
             for (int i = 0; i < crosses.Count; i++)
                 crosses[i].neighbours.Sort();
 
-
-
             //dodanie odleglosci i predkosci
             for (int i = 0; i < crosses.Count; i++)
             {
@@ -175,8 +156,6 @@ namespace GPS
                         + Math.Pow((crosses[i].y - crosses[crosses[i].neighbours[j]].y), 2)));
                 }
             }
-            StartVertex.Text = startVertex.ToString();
-            EndVertex.Text = endVertex.ToString();
 
             //utworzenie listy linii i stopow
             roads.Add(line00);
@@ -271,12 +250,14 @@ namespace GPS
 
         }
 
+ 
+
+
+
         //dijkstra od (a,b)   
         //macierz incydencji
         double[,] setGraph(List<List<int>> traffics)
         {
-
-            
             //losowanie prędkości dróg
             var rnd = new Random(0);
             var rnd2 = new Random();
@@ -321,7 +302,6 @@ namespace GPS
                 }
            }
 
-
             var graph = new double[crosses.Count, crosses.Count];
             for (int i = 0; i < crosses.Count; i++)
             {
@@ -335,21 +315,16 @@ namespace GPS
                             break;
                         }
                         else
-                            graph[i, j] = 0;
+                            graph[i, j] = double.PositiveInfinity;
                     }
                 }
             }
-
             return graph;
         }
 
         private void Test_Click(object sender, RoutedEventArgs e)
         {
             var graph = setGraph(traffics);//macierz incydencji
-
-
-
-
             parents = alg.dijkstra(graph, startVertex);
             List<int> tmp = new List<int>();
             int index = endVertex;
@@ -361,12 +336,8 @@ namespace GPS
             }
             route = tmp;
 
-
-
             Bitmap clear_map = (Bitmap)bitmap.Clone();
-
             //pokazanie drogi
-            //bitmap = new Bitmap(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Resources\crosses.png");
             for (int i = 0; i < route.Count; i++)
             {
                 coloring(clear_map, crosses[route[i]].x, crosses[route[i]].y, System.Drawing.Color.BlueViolet);
@@ -379,10 +350,7 @@ namespace GPS
             for (int i = 0; i < roads.Count; i++)//ukrycie wcześniej zrobionych dróg
                 roads[i].StrokeThickness = 0;
 
-
-
             //ulice jednokierunkowe
-            //bitmap = new Bitmap(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Resources\crosses.png");
             int count= 0;
             for (int i = 0; i < crosses.Count; i++)
             {
@@ -438,8 +406,11 @@ namespace GPS
             counter2 = 0;
 
             double ratio = Math.Pow(Math.Pow(crosses[13].x - crosses[106].x, 2) + Math.Pow(crosses[13].y - crosses[106].y, 2), 0.5);
+            double time_ratio = 19;
             ratio = 7000 / ratio; //5.27 troche za malo
             double distance = 0;
+            double time = 0;
+            route.Reverse();
             for (int i = 0; i < route.Count - 1; i++)
             {
                 for (int j = 0; j < crosses[route[i]].neighbours.Count; j++)
@@ -447,16 +418,27 @@ namespace GPS
                     if (route[i + 1] == crosses[route[i]].neighbours[j])
                     {
                         distance += crosses[route[i]].distance[j];
+                        time += crosses[route[i]].distance[j] / crosses[route[i]].velocity[j];
                         break;
                     }
                 }
             }
+            route.Reverse();
 
-            Remaining_way.Content = ((int)(distance * ratio) / 50) * 50;
-            Remaining_way.Content += " metrów";
+            double way = (int)(distance * ratio / 100);
+            Remaining_way.Content = way / 10;
+            Remaining_way.Content += "km";
+
+            //czas trzeba pomnożyć przez stałą
+            time *= time_ratio;
+            int mins = (int)time / 60;
+            int seconds = (int)time - 60 * mins;
+            Remaining_time.Content = mins + "min " + seconds + "s";
+
 
             //buttony
             test3.IsEnabled = true;
+            test4.IsEnabled = false;
         }
 
       
@@ -467,8 +449,6 @@ namespace GPS
             string tmp = null;
             for (int i = 0; i < x.Length; i++)
                 tmp += x[i] + "\n";
-
-
             MessageBox.Show(tmp);
         }
 
@@ -494,7 +474,6 @@ namespace GPS
             var x2 = crosses[route[0]].y * map.ActualHeight / bitmap.Height;
             x1 -= car.Width / 2;
             x2 -= car.Height / 2;
-
             var place = new Thickness(x1, x2, 0, 0);
             car.Margin = place;
 
@@ -512,12 +491,14 @@ namespace GPS
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             //pokazanie prędkości
+            double vel = 0;
             for (int i = 0; i < crosses[route[counter]].neighbours.Count; i++)
             {
                 if (route[counter + 1] == crosses[route[counter]].neighbours[i])
                 {
                     Road_velocity.Content = crosses[route[counter]].velocity[i].ToString();
                     Road_velocity.Content += " km/h";
+                    vel = crosses[route[counter]].velocity[i];
                     break;
                 }
             }
@@ -527,6 +508,8 @@ namespace GPS
             double ratio = Math.Pow(Math.Pow(crosses[13].x - crosses[106].x, 2) + Math.Pow(crosses[13].y - crosses[106].y, 2), 0.5);
             ratio = 7000 / ratio; //5.27 troche za malo
             double distance = 0;
+            double time = 0;
+            double time_ratio = 19;
             for (int i = 0; i < route.Count - 1; i++) 
             {
                 for(int j=0; j < crosses[route[i]].neighbours.Count; j++)
@@ -534,6 +517,7 @@ namespace GPS
                     if (route[i + 1] == crosses[route[i]].neighbours[j])
                     {
                         distance += crosses[route[i]].distance[j];
+                        time += crosses[route[i]].distance[j] / crosses[route[i]].velocity[j];
                         break;
                     }
                 }
@@ -542,10 +526,17 @@ namespace GPS
             double traveled_y = crosses[route[0]].y - (car.Margin.Top + car.Height / 2) / map.ActualHeight * (double)bitmap.Height;
             double traveled_road = Math.Pow(traveled_x * traveled_x + traveled_y * traveled_y, 0.5);
             distance -= traveled_road;
+            time -= traveled_road / vel;
 
-            Remaining_way.Content = ((int)(distance * ratio) / 50) * 50;
-            Remaining_way.Content += " metrów";
-
+            double way = (int)(distance * ratio / 100);
+            Remaining_way.Content = way / 10;
+            Remaining_way.Content += "km";
+            time *= time_ratio;
+            int mins = (int)time / 60;
+            int seconds = (int)time - 60 * mins;
+            if (seconds <= 3)
+                seconds = 0;
+            Remaining_time.Content = mins + "min " + seconds + "s";
 
             //matematyka kąta
             double x0 = crosses[route[counter]].x * map.ActualWidth / (double)bitmap.Width;
@@ -561,8 +552,7 @@ namespace GPS
                 angle = -Math.Abs(angle);
             if (y > 0 && x < 0)
                 angle = Math.Abs(angle);
-
-
+            
             var newPlace = car.Margin;
             if (crosses[route[counter + 1]].x < crosses[route[counter]].x)
                 newPlace.Left--;
@@ -570,17 +560,14 @@ namespace GPS
                 newPlace.Left++;
             newPlace.Top = newPlace.Top + angle;
             car.Margin = new Thickness(newPlace.Left, newPlace.Top, 0, 0);
-
+            
             //kasowanie przejechanej drogi
             if (x > 0)
                 roads[route.Count - counter - 2].X2++;
             else
                 roads[route.Count - counter - 2].X2--;
             roads[route.Count - counter - 2].Y2 += angle;
-
-            //double Y = car.Margin.Top * bitmap.Height / map.ActualHeight;
-            //double X = car.Margin.Left * bitmap.Width / map.ActualWidth;
-
+               
             counter2++;
             if (counter2 == (int)(Math.Abs(crosses[route[counter + 1]].x - crosses[route[counter]].x) * map.ActualWidth / bitmap.Width))
             {
@@ -606,25 +593,14 @@ namespace GPS
             }
         }
 
-
-
-
-        
-
         //pokazanie wezla i sasiadow
         private void ShowVertex(object sender, TextChangedEventArgs e)
         {
 
             Bitmap clear_map = (Bitmap)bitmap.Clone();
-
-
             if (showVertex.Text != "")
             {
-                if (int.Parse(showVertex.Text) > 106)
-                {
-                    //bitmap = new Bitmap(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Resources\crosses.png");
-                }
-                else
+                if (int.Parse(showVertex.Text) <= 106)
                 {
                     int X = crosses[int.Parse(showVertex.Text)].x;
                     int Y = crosses[int.Parse(showVertex.Text)].y;
@@ -645,27 +621,44 @@ namespace GPS
         //punkt startowy
         private void StartVertex_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (StartVertex.Text != "")
-                startVertex = int.Parse(StartVertex.Text);
+            Bitmap clear_map = (Bitmap)bitmap.Clone();
+            if (int.TryParse(StartVertex.Text, out startVertex))
+            {
+                if (startVertex <= 106)
+                {
+                    int X = crosses[startVertex].x;
+                    int Y = crosses[startVertex].y;
+                    coloring(clear_map, X, Y, System.Drawing.Color.Red);
+                    map.Source = CreateBitmapSourceFromBitmap(clear_map);
+                }
+            }
         }
 
         //punkt końcowy
         private void EndVertex_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (EndVertex.Text != "")
-                endVertex = int.Parse(EndVertex.Text);
+            Bitmap clear_map = (Bitmap)bitmap.Clone();
+            if (int.TryParse(EndVertex.Text, out endVertex))
+            {
+                if (endVertex <= 106)
+                {
+                    int X = crosses[endVertex].x;
+                    int Y = crosses[endVertex].y;
+                    coloring(clear_map, X, Y, System.Drawing.Color.Orange);
+                    map.Source = CreateBitmapSourceFromBitmap(clear_map);
+                }
+            }     
         }
 
         //zapisuje współrzędne kliknięcia oraz pokazuje numer skrzyżowania z sąsiadami
+        int mouse_counter = 0;
         private void Map_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
+        {      
             BitmapSource bitmapTmp = (BitmapSource)map.Source;
             Bitmap bitmap = new Bitmap(BitmapFromSource(bitmapTmp));
             var point = Mouse.GetPosition(map);
-            // int x = point.X/MainWindow.ActualWidthProperty
             double x = column.ActualWidth;
             double y = grid.ActualHeight;
-            //  if (a.IsEmpty)
             mouse.X = (int)point.X;
             mouse.Y = (int)point.Y;
 
@@ -674,7 +667,18 @@ namespace GPS
                 if (Math.Abs(crosses[i].x - mouse.X * bitmap.Width / map.ActualWidth) < 5
                     && Math.Abs(crosses[i].y - mouse.Y * bitmap.Height / map.ActualHeight) < 5)
                 {
-                    showVertex.Text = i.ToString();
+                    if (mouse_counter == 0)
+                    {
+                        StartVertex.Text = i.ToString();
+                        mouse_counter++;
+                    }
+                    else if (mouse_counter == 1)
+                    {
+                        EndVertex.Text = i.ToString();
+                        mouse_counter++;
+                    }
+                    else
+                        showVertex.Text = i.ToString();
                     break;
                 }
             }
@@ -724,5 +728,12 @@ namespace GPS
             }
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Window x = new Start();
+            x.Show();
+
+            //MessageBox.Show("Kliknij na skrzyżowanie, pierwsze kliknięcie w skrzyżowanie stanie się punktem startowym, a drugie punktem końcowym.");
+        }
     }
 }
