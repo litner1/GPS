@@ -181,9 +181,9 @@ namespace GPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Start {
+        public static System.Drawing.Bitmap StartWindow {
             get {
-                object obj = ResourceManager.GetObject("Start", resourceCulture);
+                object obj = ResourceManager.GetObject("StartWindow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

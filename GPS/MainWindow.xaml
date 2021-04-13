@@ -62,7 +62,7 @@
                Stretch="Fill" Grid.RowSpan="11"  MouseLeftButtonDown="Map_MouseLeftButtonDown"/>
 
 
-        <Button x:Name="test" Grid.Column="0" Content="Wyznacz &#x0a;skrzyżowania &#x0a;na mpaie" Grid.Row="0"
+        <Button x:Name="test" Grid.Column="0" Content="Wyznacz &#x0a;skrzyżowania &#x0a;na mapie" Grid.Row="0"
                 Margin="0,0,0,0" Click="Test_Click" Grid.RowSpan="4" FontSize="30"></Button>
 
 
